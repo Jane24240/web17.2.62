@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { User } from '../user';
+import { mapChildrenIntoArray } from '@angular/router/src/url_tree';
 
 @Component({
   selector: 'app-form',
@@ -18,13 +19,14 @@ export class FormComponent implements OnInit {
   ngOnInit() {
    this.formGroup = this.formBuild.group({
      firstName: this.formBuild.control(''),
-     lastName: ['']
+     lastName: [''],
+     email:[''],
+     age:[21]
    })
   }
   onSubmit(from: FormGroup){
-    const{firstName,lastName}=from.value;
-    const user = new User(firstName,lastName);
-    console.log(User);
-    
+    const{firstName,lastName,email,age}=from.value;
+    const user = new User(firstName,lastName,email,age);
+    console.log(user);
   }
 }
